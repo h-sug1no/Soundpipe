@@ -1,5 +1,8 @@
+/* This code is placed in the public domain. */
+
 #include <stdlib.h>
 #include "soundpipe.h"
+#include "tangled/scale.h"
 
 int sp_biscale_create(sp_biscale **p)
 {
@@ -22,6 +25,6 @@ int sp_biscale_init(sp_data *sp, sp_biscale *p)
 
 int sp_biscale_compute(sp_data *sp, sp_biscale *p, SPFLOAT *in, SPFLOAT *out)
 {
-    *out = p->min + (*in + 1.0) * 0.5 * (p->max - p->min);
+    *out = sk_biscale(*in, p->min, p->max);
     return SP_OK;
 }

@@ -2,6 +2,7 @@
 
 #include <stdlib.h>
 #include "soundpipe.h"
+#include "tangled/scale.h"
 
 int sp_scale_create(sp_scale **p)
 {
@@ -24,6 +25,6 @@ int sp_scale_init(sp_data *sp, sp_scale *p)
 
 int sp_scale_compute(sp_data *sp, sp_scale *p, SPFLOAT *in, SPFLOAT *out)
 {
-    *out =  *in * (p->max - p->min) + p->min;
+    *out = sk_scale(*in, p->min, p->max);
     return SP_OK;
 }

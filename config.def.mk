@@ -98,6 +98,7 @@ tangled/peakeq.o \
 tangled/modalres.o \
 tangled/phasewarp.o \
 tangled/phasor.o \
+tangled/scale.o \
 
 NO_LIBSNDFILE=1
 CFLAGS += -DNO_LIBSNDFILE
