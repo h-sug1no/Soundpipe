@@ -22,6 +22,6 @@ int sp_biscale_init(sp_data *sp, sp_biscale *p)
 
 int sp_biscale_compute(sp_data *sp, sp_biscale *p, SPFLOAT *in, SPFLOAT *out)
 {
-    *out = p->min + (*in + 1.0) / 2.0 * (p->max - p->min);
+    *out = p->min + (*in + 1.0) * 0.5 * (p->max - p->min);
     return SP_OK;
 }
