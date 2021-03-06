@@ -33,13 +33,13 @@ sptbl["compressor"] = {
             {
                 name = "atk",
                 type = "SPFLOAT*",
-                description ="Compressor attack",
+                description ="Compressor attack time constant (in seconds)",
                 default = 0.1
             },
             {
                 name = "rel",
                 type = "SPFLOAT*",
-                description ="Compressor release",
+                description ="Compressor release time constant (in seconds)",
                 default = 0.1
             },
         }
