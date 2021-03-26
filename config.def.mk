@@ -86,6 +86,7 @@ modalres \
 phasewarp \
 tread \
 oscmorph \
+verbity \
 
 TANGLED += \
 tangled/osc.o \
