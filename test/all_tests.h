@@ -82,7 +82,7 @@ TEST(t_tseg, "tseg", "a7bd2bda3b4db43476684c7dd8e81495")
 /* TEST(t_hilbert, "hilbert", "7c85330d2360d6c7e02f5a41efb6ee3f") */
 TEST(t_timer, "timer", "addcd2e6c740921c0829e1db4afdf462")
 /* TEST(t_autowah, "autowah", "4e4a78480cd24e8bae68672a86d1a58d") */
-TEST(t_tread, "tread", "8d2cb05fb2f7f554f2b9d85107438f50")
+/* TEST(t_tread, "tread", "8d2cb05fb2f7f554f2b9d85107438f50") */
 /* TEST(t_nsmp, "nsmp", "39212b911808a8059e90d07996342b41") */
 /* TEST(t_zitarev, "zitarev", "1ccae5b4673ab4012d946686323ec484") */
 TEST(t_thresh, "thresh", "8d72ab360c9198fb4e469b092349e26d")

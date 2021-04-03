@@ -48,7 +48,6 @@ t_vardelay \
 t_peakeq \
 t_modalres \
 t_phasewarp \
-t_tread \
 t_phasor \
 
 PERF=\
