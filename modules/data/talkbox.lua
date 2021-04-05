@@ -26,10 +26,10 @@ sptbl["talkbox"] = {
 
     modtype = "module",
 
-    description = [[A high talkbox emulation, simular to a vocoder.
+    description = [[A high resolution vocoder.
 This is the talkbox plugin ported from the MDA plugin suite. In many ways,
 this Talkbox functions like a vocoder: it takes in a source signal (usually
-speech), which then excites an excitation signal 
+speech), which then excites an excitation signal
 (usually a harmonically rich signal like a saw wave). This particular algorithm
 uses linear-predictive coding (LPC), making speech intelligibility better 
 than most vocoder implementations.
