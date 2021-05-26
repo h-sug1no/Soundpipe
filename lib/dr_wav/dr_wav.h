@@ -865,7 +865,7 @@ static drwav_bool32 drwav__read_chunk_header(drwav_read_proc onRead, void* pUser
 
         pHeaderOut->sizeInBytes = drwav__bytes_to_u64(sizeInBytes) - 24;    // <-- Subtract 24 because w64 includes the size of the header.
         pHeaderOut->paddingSize = (unsigned int)(pHeaderOut->sizeInBytes % 8);
-        pRunningBytesReadOut += 24;
+        *pRunningBytesReadOut += 24;
     }
 
     return DRWAV_TRUE;

@@ -17,3 +17,4 @@ test/*.bin
 # Generated files
 util/wav2smp
 sp_dict.lua
+h/sp_base.h
