@@ -29,8 +29,8 @@ int sp_gen_padsynth(sp_data *sp, sp_ftbl *ps, sp_ftbl *amps,
     SPFLOAT *A = amps->tbl;
     SPFLOAT *smp = ps->tbl;
 
-    SPFLOAT *freq_amp = malloc((N / 2) * sizeof(SPFLOAT));
-    SPFLOAT *freq_phase = malloc((N / 2) * sizeof(SPFLOAT));
+    SPFLOAT *freq_amp;
+    SPFLOAT *freq_phase;
 
 
     N = (int) ps->size;
