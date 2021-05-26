@@ -1,4 +1,4 @@
-#!/usr/local/bin/lua
+#!/usr/bin/env lua
 
 -- Parse a lua table in modules/data and write text
 -- to run: lua sp.lua "foo"
@@ -46,14 +46,16 @@ function PG.initf(self, sp)
     
     io.write(string.format("%s(sp_data *sp, sp_%s *%s", 
         tbl.func.init, self.name, self.name))
-    
-    for _, v in pairs(tbl.params.mandatory) do
-        if(string.byte(v.type, string.len(v.type)) == 42) then
-        arg = string.format(", %s%s", v.type, v.name)
-        else
-        arg = string.format(", %s %s", v.type, v.name)
+    tbl = tbl.params.mandatory
+    if tbl then
+        for _, v in pairs(tbl) do
+            if(string.byte(v.type, string.len(v.type)) == 42) then
+            arg = string.format(", %s%s", v.type, v.name)
+            else
+            arg = string.format(", %s %s", v.type, v.name)
+            end
+            io.write(arg)
         end
-        io.write(arg)
     end
 
     io.write(")\n")
@@ -78,67 +80,72 @@ function PG.funcs(self, sp)
 	self:initf(sp)   
 	self:computef(sp)
 	self:destroyf(sp)   
-	io.write("\n")
+    io.write("\n")
 end
 
 function PG.man_params(self,sp)
-    self:printheader("Mandatory Parameters")
     local tbl = sp[self.name].params.mandatory
-    for _, v in pairs(tbl) do
-        io.write(string.format("%s: ", v.name))
-        io.write(v.description)
-        io.write(string.format("\n(Recommended value: %s)\n\n", v.default))
+    if tbl then
+        self:printheader("Mandatory Parameters")
+        for _, v in pairs(tbl) do
+            io.write(string.format("%s: ", v.name))
+            io.write(v.description)
+            io.write(string.format("\n(Recommended value: %s)\n\n", v.default))
+        end
     end
- end
+end
 
 function PG.opt_params(self,sp)
-    self:printheader("Optional Parameters:")
     local tbl = sp[self.name].params.optional
-    for _, v in pairs(tbl) do
-        io.write(string.format("*%s*: ", v.name))
-        io.write(v.description)
-        io.write(string.format("\n(Default value: %s)\n\n", v.default))
+    if tbl then
+        self:printheader("Optional Parameters:")
+        for _, v in pairs(tbl) do
+            io.write(string.format("*%s*: ", v.name))
+            io.write(v.description)
+            io.write(string.format("\n(Default value: %s)\n\n", v.default))
+        end
     end
 end
 
 function PG.inputs(self, sp)
-    self:printheader("Inputs:")
     local tbl = sp[self.name].inputs
-    for _, v in pairs(tbl) do
-        io.write(string.format("*%s*: ", v.name))
-        io.write(v.description .. "\n\n")
-    end
-	io.write("\n")
+    if tbl then
+        self:printheader("Inputs:")
+        for _, v in pairs(tbl) do
+            io.write(string.format("*%s*: ", v.name))
+            io.write(v.description .. "\n\n")
+        end
+	end
 end
 	
 function PG.outputs(self, sp)
-    self:printheader("Outputs:")
     local tbl = sp[self.name].outputs
-    for _, v in pairs(tbl) do
-        io.write(string.format("*%s*: ", v.name))
-        io.write(v.description .. "\n\n")
-    end
-	io.write("\n")
+    if tbl then
+        self:printheader("Outputs:")
+        for _, v in pairs(tbl) do
+            io.write(string.format("*%s*: ", v.name))
+            io.write(v.description .. "\n\n")
+        end
+	end
 end
 
 function PG.other(self, sp)
-    self:printheader("Other Functions:")
     local tbl = sp[self.name].func.other
-    
-    for func,params in pairs(tbl) do
-        io.write(string.format("%s(sp_%s %s", func, self.name, self.name))
-        for _,p in pairs(params) do
-            io.write(string.format(", %s %s", p.type, p.name))
-        end
-        io.write(")\n\n")
-        for _,p in pairs(params) do
-            io.write("*" .. p.name .. ":* ")
-            io.write(p.description.. "\n")
-            io.write("(Suggested default: " .. p.default .. ")\n\n")
-            
+    if tbl then
+        self:printheader("Other Functions:")
+        for func,params in pairs(tbl) do
+            io.write(string.format("%s(sp_%s %s", func, self.name, self.name))
+            for _,p in pairs(params) do
+                io.write(string.format(", %s %s", p.type, p.name))
+            end
+            io.write(")\n\n")
+            for _,p in pairs(params) do
+                io.write("*" .. p.name .. ":* ")
+                io.write(p.description.. "\n")
+                io.write("(Suggested default: " .. p.default .. ")\n\n")
+            end
         end
     end
-    io.write("\n")
 end
 	
 function PG.params(self, sp)
