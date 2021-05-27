@@ -48,108 +48,108 @@ void sp_verbity_reset(sp_verbity *v, int sr)
 
     v->sr = sr;
 
-	v->bigness = 0.25;
-	v->longness = 0.0;
-	v->darkness = 0.25;
+    v->bigness = 0.25;
+    v->longness = 0.0;
+    v->darkness = 0.25;
 
-	v->iirAL = 0.0;
+    v->iirAL = 0.0;
     v->iirAR = 0.0;
 
-	v->iirBL = 0.0;
+    v->iirBL = 0.0;
     v->iirBR = 0.0;
 
-	for (count = 0; count < 6479; count++) {
+    for (count = 0; count < 6479; count++) {
         v->aIL[count] = 0.0;
         v->aIR[count] = 0.0;
     }
 
-	for (count = 0; count < 3659; count++) {
+    for (count = 0; count < 3659; count++) {
         v->aJL[count] = 0.0;
         v->aJR[count] = 0.0;
     }
 
-	for (count = 0; count < 1719; count++) {
+    for (count = 0; count < 1719; count++) {
         v->aKL[count] = 0.0;
         v->aKR[count] = 0.0;
     }
 
-	for (count = 0; count < 679; count++) {
+    for (count = 0; count < 679; count++) {
         v->aLL[count] = 0.0;
         v->aLR[count] = 0.0;
     }
 
-	for (count = 0; count < 9699; count++) {
+    for (count = 0; count < 9699; count++) {
         v->aAL[count] = 0.0;
         v->aAR[count] = 0.0;
     }
 
-	for (count = 0; count < 5999; count++) {
+    for (count = 0; count < 5999; count++) {
         v->aBL[count] = 0.0;
         v->aBR[count] = 0.0;
     }
 
-	for (count = 0; count < 2319; count++) {
+    for (count = 0; count < 2319; count++) {
         v->aCL[count] = 0.0;
         v->aCR[count] = 0.0;
     }
 
-	for (count = 0; count < 939; count++) {
+    for (count = 0; count < 939; count++) {
         v->aDL[count] = 0.0;
         v->aDR[count] = 0.0;
     }
 
-	for (count = 0; count < 15219; count++) {
+    for (count = 0; count < 15219; count++) {
         v->aEL[count] = 0.0;
         v->aER[count] = 0.0;
     }
 
-	for (count = 0; count < 8459; count++) {
+    for (count = 0; count < 8459; count++) {
         v->aFL[count] = 0.0;
         v->aFR[count] = 0.0;
     }
 
-	for (count = 0; count < 4539; count++) {
+    for (count = 0; count < 4539; count++) {
         v->aGL[count] = 0.0;
         v->aGR[count] = 0.0;
     }
 
-	for (count = 0; count < 3199; count++) {
+    for (count = 0; count < 3199; count++) {
         v->aHL[count] = 0.0;
         v->aHR[count] = 0.0;
     }
 
-	v->feedbackAL = 0.0; v->feedbackAR = 0.0;
-	v->feedbackBL = 0.0; v->feedbackBR = 0.0;
-	v->feedbackCL = 0.0; v->feedbackCR = 0.0;
-	v->feedbackDL = 0.0; v->feedbackDR = 0.0;
-	v->previousAL = 0.0; v->previousAR = 0.0;
-	v->previousBL = 0.0; v->previousBR = 0.0;
-	v->previousCL = 0.0; v->previousCR = 0.0;
-	v->previousDL = 0.0; v->previousDR = 0.0;
+    v->feedbackAL = 0.0; v->feedbackAR = 0.0;
+    v->feedbackBL = 0.0; v->feedbackBR = 0.0;
+    v->feedbackCL = 0.0; v->feedbackCR = 0.0;
+    v->feedbackDL = 0.0; v->feedbackDR = 0.0;
+    v->previousAL = 0.0; v->previousAR = 0.0;
+    v->previousBL = 0.0; v->previousBR = 0.0;
+    v->previousCL = 0.0; v->previousCR = 0.0;
+    v->previousDL = 0.0; v->previousDR = 0.0;
 
-	for (count = 0; count < 6; count++) {
+    for (count = 0; count < 6; count++) {
         v->lastRefL[count] = 0.0;
         v->lastRefR[count] = 0.0;
     }
 
-	v->thunderL = 0;
+    v->thunderL = 0;
     v->thunderR = 0;
 
-	v->countI = 1;
-	v->countJ = 1;
-	v->countK = 1;
-	v->countL = 1;
+    v->countI = 1;
+    v->countJ = 1;
+    v->countK = 1;
+    v->countL = 1;
 
-	v->countA = 1;
-	v->countB = 1;
-	v->countC = 1;
-	v->countD = 1;
+    v->countA = 1;
+    v->countB = 1;
+    v->countC = 1;
+    v->countD = 1;
 
-	v->countE = 1;
-	v->countF = 1;
-	v->countG = 1;
-	v->countH = 1;
-	v->cycle = 0;
+    v->countE = 1;
+    v->countF = 1;
+    v->countG = 1;
+    v->countH = 1;
+    v->cycle = 0;
 
     v->psize = -1;
     v->onedsr = 1.0 / sr;
@@ -166,36 +166,36 @@ int sp_verbity_compute(sp_data *sp,
                        SPFLOAT *inL, SPFLOAT *inR,
                        SPFLOAT *outL, SPFLOAT *outR)
 {
-	SPFLOAT overallscale;
-	int cycleEnd;
-	SPFLOAT size;
-	SPFLOAT regen;
-	SPFLOAT lowpass;
-	SPFLOAT interpolate;
-	SPFLOAT thunderAmount;
+    SPFLOAT overallscale;
+    int cycleEnd;
+    SPFLOAT size;
+    SPFLOAT regen;
+    SPFLOAT lowpass;
+    SPFLOAT interpolate;
+    SPFLOAT thunderAmount;
     SPFLOAT inputSampleL;
     SPFLOAT inputSampleR;
 
     overallscale = 1.0;
-	overallscale *= v->onedsr;
-	overallscale *= v->sr;
+    overallscale *= v->onedsr;
+    overallscale *= v->sr;
 
-	cycleEnd = floor(overallscale);
-	if (cycleEnd < 1) cycleEnd = 1;
-	if (cycleEnd > 4) cycleEnd = 4;
+    cycleEnd = floor(overallscale);
+    if (cycleEnd < 1) cycleEnd = 1;
+    if (cycleEnd > 4) cycleEnd = 4;
 
-	/* this is going to be 2 for 88.1 or 96k,
+    /* this is going to be 2 for 88.1 or 96k,
      * 3 for silly people, 4 for 176 or 192k
      */
 
     /* sanity check */
-	if (v->cycle > cycleEnd-1) v->cycle = cycleEnd-1;
+    if (v->cycle > cycleEnd-1) v->cycle = cycleEnd-1;
 
-	size = (v->bigness*1.77)+0.1;
-	regen = 0.0625+(v->longness*0.03125); /* 0.09375 max; */
-	lowpass = (1.0-pow(v->darkness,2.0))/sqrt(overallscale);
-	interpolate = pow(v->darkness,2.0)*0.618033988749894848204586; /* has IIRlike qualities */
-	thunderAmount = (0.3-(v->longness*0.22))*v->darkness*0.1;
+    size = (v->bigness*1.77)+0.1;
+    regen = 0.0625+(v->longness*0.03125); /* 0.09375 max; */
+    lowpass = (1.0-pow(v->darkness,2.0))/sqrt(overallscale);
+    interpolate = pow(v->darkness,2.0)*0.618033988749894848204586; /* has IIRlike qualities */
+    thunderAmount = (0.3-(v->longness*0.22))*v->darkness*0.1;
 
     if (size != v->psize) {
         v->psize = size;
