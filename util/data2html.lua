@@ -184,6 +184,20 @@ function PG.opt_params(self,sp)
     io.write("<div class=\"row\"><br></div>\n")
 end
 
+function PG.addLinkOrText(self, str, exp, file_postfix)
+    local type, inout, desc1 = string.match(
+        str,
+        exp);
+      if (type) then
+          io.write('<a href="./' .. string.lower(type)
+          .. file_postfix .. '.html">' .. type .. '</a> '
+          .. inout
+          .. desc1 .. '\n')
+      else
+        io.write(str .. "\n")
+      end
+end
+
 function PG.inputs(self, sp)
     if sp[self.name].ninputs == 0 then return end;
     self:printheader("Inputs")
@@ -191,7 +205,7 @@ function PG.inputs(self, sp)
     for _, v in pairs(tbl) do
         io.write("<div class=\"row\">\n")
         self:printoption(v.name)
-        io.write(v.description .. "\n")
+        self:addLinkOrText(v.description, "(.-) ([iI]nput)(.*)", '_input')
         io.write("</div>\n")
     end
     io.write("<div class=\"row\"><br></div>\n")
@@ -203,7 +217,7 @@ function PG.outputs(self, sp)
     for _, v in pairs(tbl) do
     io.write("<div class=\"row\">\n")
         self:printoption(v.name)
-        io.write(v.description .. "\n")
+        self:addLinkOrText(v.description, "(.-) ([oO]utput)(.*)", '_output')
     io.write("</div>\n")
     end
     io.write("<div class=\"row\"><br></div>\n")
