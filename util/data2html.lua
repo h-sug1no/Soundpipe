@@ -195,7 +195,19 @@ function PG.addLinkOrText(self, str, exp, file_postfix)
           .. inout
           .. desc1 .. '\n')
 
-          local f = io.open('docs/idx/' .. ltype .. file_postfix .. ".html", "a")
+          local fname = 'docs/idx/' .. ltype .. file_postfix .. '.html';
+          local add_header = false
+          local tf = io.open(fname, "r")
+          if (tf) then
+            io.close(tf)
+          else
+            add_header = true
+          end
+
+          local f = io.open(fname, "a")
+          if (add_header) then
+            f:write('<div><a href="./">./</a></div>\n')
+          end
           f:write('<a href="../' .. self.name .. '.html">' .. self.name .. '</a>\n')
           f:close()
       else
