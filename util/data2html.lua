@@ -189,10 +189,15 @@ function PG.addLinkOrText(self, str, exp, file_postfix)
         str,
         exp);
       if (type) then
-          io.write('<a href="./' .. string.lower(type)
+          local ltype = string.lower(type)
+          io.write('<a href="./idx/' .. ltype
           .. file_postfix .. '.html">' .. type .. '</a> '
           .. inout
           .. desc1 .. '\n')
+
+          local f = io.open('docs/idx/' .. ltype .. file_postfix .. ".html", "a")
+          f:write('<a href="../' .. self.name .. '.html">' .. self.name .. '</a>\n')
+          f:close()
       else
         io.write(str .. "\n")
       end

@@ -1,6 +1,9 @@
 #!/bin/sh
 
 mkdir -p docs
+mkdir -p docs/idx
+rm -rf docs/idx/*
+
 cp -r util/css docs
 
 > docs/modules.txt
