@@ -43,7 +43,7 @@ sptbl["metro"] = {
     outputs = {
         {
             name = "out",
-            description = "Signal out."
+            description = "Signal output."
         },
     }
 
